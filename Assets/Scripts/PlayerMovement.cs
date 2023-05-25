@@ -21,68 +21,61 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     private float getBigger = 0.25f;
-    //[SerializeField]
 
     private Rigidbody rb;
+    private Camera mainCamera;
 
     public bool isSlowedDown = false;
     private float slowDuration = 3.0f;
-
     [SerializeField]
     private float slowSpeed = 0.5f;
 
-
-    void Start()
+    private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        mainCamera = Camera.main;
         gameObject.transform.localScale = new Vector3(getBigger, getBigger, getBigger);
-
     }
 
-    void Update()
+    private void Update()
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
-        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
+        Vector3 cameraForward = mainCamera.transform.forward;
+        Vector3 cameraRight = mainCamera.transform.right;
+        cameraForward.y = 0f;
+        cameraRight.y = 0f;
+        cameraForward.Normalize();
+        cameraRight.Normalize();
+
+        Vector3 movement = (cameraForward * moveVertical + cameraRight * moveHorizontal).normalized;
 
         if (isSlowedDown)
         {
-
             if (slowDuration >= 0.0f)
             {
                 rb.AddForce(movement * slowSpeed);
                 slowDuration -= Time.deltaTime;
             }
-            else if (slowDuration <= 0.000000f)
+            else if (slowDuration <= 0.0f)
             {
                 isSlowedDown = false;
             }
-
         }
         else
         {
             rb.AddForce(movement * speed);
         }
 
-
-
-
-
-
         if (rb.velocity.magnitude > 0.1f)
         {
             getBigger += Time.deltaTime / 4;
             if (gameObject.transform.localScale.x <= 3f)
             {
-
                 gameObject.transform.localScale = new Vector3(getBigger, getBigger, getBigger);
-
             }
-
-
         }
-
 
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -97,7 +90,8 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    
+
+
 
 
     private void OnCollisionEnter(Collision collision)
