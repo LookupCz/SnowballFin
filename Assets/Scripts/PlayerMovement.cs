@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
     private float speed = 2f;
     [SerializeField]
     private float getBigger = 0.25f;
+    [SerializeField]
+    private float jumpForce = 5f;
 
     public bool isSlowedDown = false;
     private float slowDuration = 3.0f;
@@ -37,8 +39,9 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Gameplay")]
     private float timeToSave = 5f;
+    [SerializeField]
+    private float fellThreshold;
 
-    private float innerSave;
     private Vector3 lastPos;
     private Quaternion lastRot;
 
@@ -69,7 +72,12 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 movement = (cameraForward * moveVertical + cameraRight * moveHorizontal).normalized;
 
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
+        {
+            //need to repair this
 
+            //rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
 
         if (isSlowedDown)
         {
@@ -123,7 +131,14 @@ public class PlayerMovement : MonoBehaviour
 
     private bool HasPlayerFell()
     {
-        throw new NotImplementedException();
+        if (transform.position.y < fellThreshold)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
         //....
 
         //check if he fell then respawn him be careful about timing tho
@@ -132,13 +147,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Respawn()
     {
-        if (gameObject.activeSelf == false)
-        {
-
-            gameObject.SetActive(true);
-            gameObject.transform.position = lastPos;
-            gameObject.transform.rotation = lastRot;
-        }
+        gameObject.SetActive(true);
+        gameObject.transform.position = lastPos;
+        gameObject.transform.rotation = lastRot;
     }
 
     private void SavePos()
@@ -147,7 +158,7 @@ public class PlayerMovement : MonoBehaviour
 
         lastPos = transform.position;
         lastRot = transform.rotation;
-        timeToSave += 5f;
+        timeToSave = 5f;
     
     }
 
@@ -165,7 +176,7 @@ public class PlayerMovement : MonoBehaviour
         }
         return false;
     }
-
+    //works
     private void OnCollisionEnter(Collision collision)
     {
 

@@ -142,6 +142,22 @@ PrefabInstance:
       propertyPath: ShapeModule.radius.value
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 7660819641628881597, guid: 17e5c06cf91faef479406b0624cb2b90, type: 3}
+      propertyPath: speed
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7660819641628881597, guid: 17e5c06cf91faef479406b0624cb2b90, type: 3}
+      propertyPath: jumpForce
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7660819641628881597, guid: 17e5c06cf91faef479406b0624cb2b90, type: 3}
+      propertyPath: slowSpeed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7660819641628881597, guid: 17e5c06cf91faef479406b0624cb2b90, type: 3}
+      propertyPath: fellThreshold
+      value: -10
+      objectReference: {fileID: 0}
     - target: {fileID: 7660819642278281600, guid: 17e5c06cf91faef479406b0624cb2b90, type: 3}
       propertyPath: m_RootOrder
       value: 5
