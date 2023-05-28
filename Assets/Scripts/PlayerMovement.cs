@@ -44,6 +44,11 @@ public class PlayerMovement : MonoBehaviour
     private float fellThreshold;
     private bool isPaused = false;
 
+    
+    private float moveTimer = 0f;
+
+    public float MoveTimer => moveTimer;
+
 
     private Vector3 lastPos;
     private Quaternion lastRot;
@@ -62,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        moveTimer += Time.deltaTime;
 
         timeToSave -= Time.deltaTime;
 

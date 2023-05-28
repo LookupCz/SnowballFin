@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UIElements;
 
 public class SnowmanInstaFinish : MonoBehaviour
 {
     private TMP_Text tmpText;
+    private PlayerMovement playerMovement;
 
     [SerializeField]
     private string nextLevelName;
@@ -27,14 +29,21 @@ public class SnowmanInstaFinish : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.E))
             {
+                Achievements dataHolder = Achievements.Instance;
+                dataHolder.SetTime(SceneManager.GetActiveScene().name, playerMovement.MoveTimer);
                 SceneManager.LoadScene(nextLevelName);
+                if (nextLevelName == "LevelMenu")
+                {
+                    UnityEngine.Cursor.lockState = CursorLockMode.None;
+                    UnityEngine.Cursor.visible = true;
+                }
             }
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
+        playerMovement = other.GetComponent<PlayerMovement>();
         if (playerMovement != null)
         {
             if (Vector3.Distance(playerMovement.transform.position, gameObject.transform.position) <= 2f)
