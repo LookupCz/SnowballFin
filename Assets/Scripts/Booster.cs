@@ -12,13 +12,15 @@ public class Booster : MonoBehaviour
         PlayerMovement playerMovement = other.GetComponent<PlayerMovement>();
         if (playerMovement != null)
         {
-            Rigidbody playerRigidbody = other.GetComponent<Rigidbody>();
-            Vector3 forceDirection = playerMovement.transform.forward;
+            //Rigidbody playerRigidbody = other.GetComponent<Rigidbody>();
+            //Vector3 forceDirection = playerMovement.transform.forward;
 
-            playerRigidbody.AddExplosionForce(explosionForce, forceDirection, 0f, 0f, ForceMode.Impulse);
+            playerMovement.HasBeenBoosted(1f, 5f);
+
+            //playerRigidbody.AddExplosionForce(explosionForce, forceDirection,0f ,2f, ForceMode.Impulse);
 
             Achievements.Instance.IncrementBoostersPickedUp();
-            playerMovement.HasBeenBoosted();
+            //playerMovement.HasBeenBoosted();
 
             Destroy(gameObject);
         }

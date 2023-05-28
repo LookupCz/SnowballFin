@@ -504,7 +504,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a842639daf78cc04098cfe15ad291cda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToGo: ThirdLevel
+  sceneToGo: SecondLevelV2
 --- !u!1 &496968596
 GameObject:
   m_ObjectHideFlags: 0
@@ -1031,7 +1031,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a842639daf78cc04098cfe15ad291cda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToGo: FifthLevel
+  sceneToGo: FourthLevelV2
 --- !u!1 &871989047
 GameObject:
   m_ObjectHideFlags: 0
@@ -1302,7 +1302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a842639daf78cc04098cfe15ad291cda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToGo: FourthLevel
+  sceneToGo: ThirdLevelV2
 --- !u!1 &1317816218
 GameObject:
   m_ObjectHideFlags: 0
@@ -1438,7 +1438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a842639daf78cc04098cfe15ad291cda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToGo: SecondLevel
+  sceneToGo: FirstLevelV2
 --- !u!1 &1390178819
 GameObject:
   m_ObjectHideFlags: 0
